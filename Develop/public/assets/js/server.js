@@ -20,13 +20,7 @@ app.use(express.json());
 // =============================================================
 
 // GET 
-app.get("/api/notes", (req, res) => res.json(fs.readFile(db, "utf8", (err, data) => {
-    if (err) {
-        throw err;
-    } else {
-        return data;
-    }
-})));
+app.get("/api/notes", (req, res) => res.json(db));
 
 // POST
 
@@ -39,13 +33,7 @@ app.post("/api/notes", (req, res) => {
       if (err) throw err;
   });
 
-  res.json(fs.readFile(db, "utf8", (err, data) => {
-    if (err) {
-        throw err;
-    } else {
-        return data;
-    }
-}));
+  res.json(db);
 });
 
 // HTML Routes
