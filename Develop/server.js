@@ -21,41 +21,48 @@ app.use(express.static("public"));
 // =============================================================
 
 // GET 
-app.get("/api/notes", (req, res) => res.json(db));
+app.get("/api/notes", (req, res) => {
+  res.sendFile(path.join(__dirname, "./db/db.json"))});
 
 // POST
 
 app.post("/api/notes", (req, res) => {
   const newNote = req.body;
+  newNote.id = req.body.title;
 
   db.push(newNote);
 
   fs.readFile("./db/db.json", "utf8", (err, data) => {
     if (err) throw err;
 
-    const json = JSON.parse(data);
-    json.push(newNote);
+    const jsonNotes = JSON.parse(data);
+    jsonNotes.push(newNote);
 
-    fs.writeFile("./db/db.json", JSON.stringify(json), err => {
+    fs.writeFile("./db/db.json", JSON.stringify(jsonNotes), err => {
       if (err) throw err;
     })
+    
   });
 
-  // dbArray.push(newNote);
+  res.json(newNote);
 
-  // fs.appendFile("./db/db.json", JSON.stringify(newNote), err => {
-  //     if (err) throw err;
-  // })
+});
 
-//   newNote.routeName = newNote.name.replace(/\s+/g, "").toLowerCase();
+//Delete
+app.delete("/api/notes/:id", (req, res) => {
+  fs.readFile("./db/db.json", "utf8", (err, data) => {
+    if (err) throw err;
 
-  res.json(fs.readFile("./db/db.json", "utf8", (err, data) => {
-        if (err) {
-            throw err;
-        } else {
-            return data;
-        }
-    }));
+    const jsonID = JSON.parse(data);
+    const ident = jsonID.find(newNote => newNote.id === req.params.id);
+    const index = jsonID.indexOf(ident);
+    jsonID.splice(index, 1);
+
+    fs.writeFile("./db/db.json", JSON.stringify(jsonID), err => {
+      if (err) throw err;
+      res.json(jsonID);
+    });
+  });  
 });
 
 // HTML Routes
