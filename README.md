@@ -1,78 +1,127 @@
 # Note-Taker
 Week-11 HW
 
+![License Badge](https://img.shields.io/badge/license-MIT-blue)
+
+
 ## Description
 
-Create an application that can be used to write, save, and delete notes. This application will use an express backend and save and retrieve note data from a JSON file.
+This is an application that can be used to write, save, and delete notes. This application uses an express backend and save and retrieve note data from a JSON file.
 
-* The application frontend has already been created, it's your job to build the backend and connect the two.
+Thie application has the following HTML routes:
 
-* The following HTML routes should be created:
+  * GET `/notes` - Returns the `notes.html` file.
 
-  * GET `/notes` - Should return the `notes.html` file.
+  * GET `*` -Returns the `index.html` file
 
-  * GET `*` - Should return the `index.html` file
+This application has a `db.json` file on the backend that is used to store and retrieve notes using the `fs` module.
 
-* The application should have a `db.json` file on the backend that will be used to store and retrieve notes using the `fs` module.
+It also has the following API routes:
 
-* The following API routes should be created:
+  * GET `/api/notes` - Reada the `db.json` file and returns all saved notes as JSON.
 
-  * GET `/api/notes` - Should read the `db.json` file and return all saved notes as JSON.
+  * POST `/api/notes` - Receives a new note and saves on the request body, adds it to the `db.json` file, and then returns the new note to the user.
 
-  * POST `/api/notes` - Should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client.
+  * DELETE `/api/notes/:id` - Receives a query parameter containing the id of a note to delete.
 
-  * DELETE `/api/notes/:id` - Should receive a query parameter containing the id of a note to delete. This means you'll need to find a way to give each note a unique `id` when it's saved. In order to delete a note, you'll need to read all notes from the `db.json` file, remove the note with the given `id` property, and then rewrite the notes to the `db.json` file.
+## Table of Contents
+
+  * [User-Story](#user-story)
+  * [Acceptance-Criteria](#acceptance-criteria)
+  * [Deployed Application](#deployed-application)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [License](#license)
+  * [Contributing](#contributing)
+  * [Tests](#tests)
+  * [Questions](#questions)
 
 ## User Story
 
+```
 AS A user, I want to be able to write and save notes
 
 I WANT to be able to delete notes I've written before
 
 SO THAT I can organize my thoughts and keep track of tasks I need to complete
-
-## Business Context
-
-For users that need to keep track of a lot of information, it's easy to forget or be unable to recall something important. Being able to take persistent notes allows users to have written information available when needed.
+```
 
 ## Acceptance Criteria
 
+```
 Application should allow users to create and save notes.
 
 Application should allow users to view previously saved notes.
 
 Application should allow users to delete previously saved notes.
+```
 
-## Deploying the App
+## Deployed Application
 
-You will not be able to deploy your server side code on GitHub pages. This app should be deployed on Heroku. Carefully follow the [Heroku Guide](../04-Supplemental/HerokuGuide.md) for getting your app deployed on Heroku.
+Here is the URL for the deployed [Note Taker Application](https://damp-sands-84380.herokuapp.com/) on Heroku.
 
-- - -
 
-## Commit Early and Often
+## Installation
 
-One of the most important skills to master as a web developer is version control. Building the habit of committing via Git is important for two reasons:
+To access this project:
 
-* Your commit history is a signal to employers that you are actively working on projects and learning new skills.
+```
+1. Go to https://github.com/alek2535/Note-Taker
 
-* Your commit history allows you to revert your codebase in the event that you need to return to a previous state.
+2. Fork the branch and then click on clone or download
 
-Follow these guidelines for committing:
+3. Paste copied link after `git clone` into your bash console in your desired directory
 
-* Make single-purpose commits for related changes to ensure a clean, manageable history. If you are fixing two issues, make two commits.
+4. You should now have access to the repository
+```
 
-* Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history.
+Since there is a `package.json`, you will need to run `npm install`.
 
-* Don't commit half-done work, for the sake of your collaborators (and your future self!).
+Once you have the dependancies installed run the command:
 
-* Test your application before you commit to ensure functionality at every step in the development process.
+```
+node server.js
+```
 
-We would like you to have well over 200 commits by graduation, so commit early and often!
+## Usage
 
-## Submission on BCS
+For users that need to keep track of a lot of information, it's easy to forget or be unable to recall something important. Being able to take persistent notes allows users to have written information available when needed.
 
-You are required to submit the following:
+Technologies Used:
 
-* The URL of the deployed application. This should be the link to the url provided by Heroku. Be sure not to submit a link to the Heroku dashboard.
+* JavaScript
+* Node.js
+* Express
+* jQuery
+* fs
+* path
 
-* The URL of the GitHub repository
+## Contributing
+
+Use the [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/version/2/0/code_of_conduct/code_of_conduct.md)
+
+## Credits
+
+Thank you to Carmen Obied(@carmenobied), CJ Pia(@cjpia612), and Zack Corpus(@zcorpuz) who helped get me through this. Bouncing ideas off of each other and providing useful resources helped make this project successful.
+
+## License
+
+[MIT License](./LICENSE)
+
+Copyright (c) [2020] [Alek Valencia]
+
+## Project Status
+
+This project meets all requirements in the Acceptance Criteria and is fully functional. Any additions would be to make the code better and to add more functionality.
+
+## Tests
+
+There are currently no tests for this project.
+
+## Questions
+
+[alek2535](https://github.com/alek2535)
+
+alekvalencia2535@gmail.com
+
+If you have any questions about the project you can reach me at the above email.
